@@ -1,49 +1,64 @@
-/* 디지털 시계 */
-function updateClock() {
-  const now = new Date();
-  const daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
-  const dayOfWeek = daysOfWeek[now.getDay()];
-  const year = now.getFullYear();
-  const month = (now.getMonth() + 1).toString().padStart(2, '0');
-  const day = now.getDate().toString().padStart(2, '0');
-  const hours = now.getHours();
-  const minutes = now.getMinutes().toString().padStart(2, '0');
-  const seconds = now.getSeconds().toString().padStart(2, '0');
+/* 커서 이벤트 */
+$(document).ready(function(){
+  var $cursor = $(".cursor");
+  if (!$cursor.length) return;
 
-  let ampm = 'AM';
-  let displayHours = hours;
-  
-  if (hours >= 12) {
-    ampm = 'PM';
-    displayHours = hours % 12;
-    if (displayHours === 0) {
-    displayHours = 12;
-    }
-  }
-  const timeString = `${displayHours}:${minutes}:${seconds} ${ampm}`;
-  document.getElementById('clock').textContent = timeString;
-}
+  $(document).on("mousemove", function(e){
+    $cursor.css({
+      top: (e.clientY - 15) + "px",
+      left: (e.clientX - 15) + "px"
+    });
+  });
 
-// 매 초마다 시계 업데이트
-setInterval(updateClock, 1000);
-
-// 페이지 로드 시에도 시계 업데이트
-updateClock();
+  $(document).on("mouseenter", "a, button, .list, [href]", function(){
+    $cursor.addClass("is-hover");
+  }).on("mouseleave", "a, button, .list, [href]", function(){
+    $cursor.removeClass("is-hover");
+  });
+});
 
 /* gsap 화면 겹치는 이벤트 */
 
-//(3) splitting
 $(function(){Splitting();});
 
-//(4) scrollTrigger
 gsap.registerPlugin(ScrollTrigger);
 
 window.addEventListener("resize", () => {
   ScrollTrigger.refresh();
 });
 
+var pinTriggers = [];
+
 gsap.utils.toArray('.sec').forEach((sec, i) => {
-  ScrollTrigger.create({
+  const video = sec.querySelector('.project_box video');
+  if (video && i > 0) {
+    gsap.set(video, {
+      y: 120,
+      scale: 0.8,
+      rotateX: 22,
+      z: -280,
+      opacity: 1,
+      force3D: true
+    });
+    gsap.to(video, {
+      y: 0,
+      scale: 1,
+      rotateX: 0,
+      z: 0,
+      opacity: 1,
+      ease: 'power2.out',
+      duration: 1,
+      scrollTrigger: {
+        trigger: sec,
+        start: 'top top',
+        end: '+=100%',
+        scrub: 0.5,
+        invalidateOnRefresh: true,
+      }
+    });
+  }
+
+  var st = ScrollTrigger.create({
     trigger: sec,
     start: 'top top',
     pin: true,
@@ -51,18 +66,7 @@ gsap.utils.toArray('.sec').forEach((sec, i) => {
     scrub: true,
     invalidateOnRefresh: true,
   });
-});
-
-//(5)스냅기능
-ScrollTrigger.create({
-  snap: {
-      snapTo: (progress, self) => {
-          let panelStarts = tops.map(st => st.start),
-          snapScroll = gsap.utils.snap(panelStarts, self.scroll());
-          return gsap.utils.normalize(0, ScrollTrigger.maxScroll(window), snapScroll);
-      },
-      duration: 0.5
-  }
+  pinTriggers.push(st);
 });
 
 /* gsap 마우스포인트 이벤트 */

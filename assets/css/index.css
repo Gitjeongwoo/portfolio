@@ -3,6 +3,33 @@ body{
   background-color: #000;
 }
 
+::selection{
+  background: #ff9257;
+  color: #fff;
+}
+
+.cursor{
+  background-color: #ff9257;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  transition: transform 0.15s ease-out;
+  pointer-events: none;
+  mix-blend-mode: difference;
+}
+
+.cursor.is-hover{
+  transform: scale(0.5);
+}
+
+.heading:hover + .cursor {
+  transform: scale(0.5);
+}
+
 /* header_sec */
 .header_sec{
   width: 100%;
@@ -32,7 +59,7 @@ body{
   color: #fff;
   font-weight: 300;
   font-family: "IBM Plex Mono";
-  z-index: 1;
+  z-index: 2;
 }
 
 .header_sec .nav .util_menu li:hover{
@@ -70,7 +97,9 @@ body{
 }
 
 
-#main_sec .tl, .tr, .bl, .br{
+
+/* frame effect */
+/* #main_sec .tl, .tr, .bl, .br{
   width: 5rem;
   height: 5rem;
   z-index: 10;
@@ -106,9 +135,10 @@ body{
   border-bottom: 2px solid #f0f0f0;
   border-right: 2px solid #f0f0f0;
   position: fixed;
-}
+} */
 
-#main_sec .time{
+/* time */
+/* #main_sec .time{
   bottom: 10%;
   right: 0;
   position: fixed;
@@ -127,7 +157,7 @@ body{
 
 .time h2{
   font-size: 1.4rem;
-}
+} */
 
 #main_sec video{
   width: 100%;
@@ -139,7 +169,7 @@ body{
   right: 0;
   bottom: 0;
   display: block;
-  filter: brightness(15%);
+  filter: brightness(60%);
 }
 
 #main_sec .main_text .text{
@@ -222,18 +252,24 @@ body{
 } */
 
 .sec{
-  width: 100%; 
-  height: 110vh;
+  width: 100%;
+  height: 100vh;
   position: relative;
+  z-index: 1;
 }
+
+/* #project_sec .sec:nth-child(1) { z-index: 1; }
+#project_sec .sec:nth-child(2) { z-index: 2; }
+#project_sec .sec:nth-child(3) { z-index: 3; }
+#project_sec .sec:nth-child(4) { z-index: 4; } */
   
+
 /* 각 섹션별 배경색 설정 */
 .project_box {
   width: 100%;
   height: 100%;
   position: relative;
   color: #fff;
-  z-index: 1;
 }
 
 .project_box video{
@@ -307,50 +343,80 @@ body{
 #list_sec{
   color: #fff;
   position: relative;
-  z-index: 10;
+  background: #000;
+  padding: 20rem 0 10rem;
 }
 
 #list_sec .list_wrap{
   position: relative;
-  width: 100%;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   font-family: 'Pretendard Variable';
-  background: #000;
-  padding-top: 10rem;
-  padding-bottom: 10rem;
+  font-weight: 300;
 }
 
 #list_sec .list_title{
   width: 100%;
-  font-family: "IBM Plex Mono";
-  font-size: 3rem;
+  font-family: 'Pretendard Variable';
+  font-size: 6rem;
+  font-weight: 300;
   margin-bottom: 5rem;
   text-align: center;
 }
 
 #list_sec .list_wrap .list{
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  width: 90%;
   border-top: 2px solid #333;
-  padding: 10rem 5rem;
+  padding: 20rem 0;
   transition: 0.2s;
   font-size: 3.2rem;
   font-weight: 400;
+  letter-spacing: 0.1rem;
 }
 
-#list_sec .list_wrap .list:last-child{
-  border-bottom: 2px solid #333;
+#list_sec .list_wrap .list .inner{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+#list_sec .list_wrap .list .inner .num{
+  width: 30%;
+  font-size: 2rem;
+  padding-left: 20rem;
+  padding-top: 1.1rem;
+}
+
+#list_sec .list_wrap .list .inner .tit{
+  width: 100%;
+  font-size: 6rem;
+}
+
+#list_sec .list_wrap .list .inner .con{
+  width: 100%;
+}
+
+#list_sec .list_wrap .list .inner .con .text{
+  font-size: 2rem;
+  padding-bottom: 3rem;
+}
+
+#list_sec .list_wrap .list .inner .con .tag{
+  display: flex;
+  gap: 1rem;
+  color: #666;
 }
 
 #list_sec .list_wrap .list:hover{
   background-color: #111;
   color: #fff;
+}
+
+#list_sec .list_wrap .list:hover .tit{
+  transition: 0.3s;
 }
 
 #list_sec .list_wrap .list .fade{
@@ -372,7 +438,7 @@ body{
   font-size: 2.4rem;
 }
 
-/* #ui_sec{
+#ui_sec{
   padding: 0 2rem;
 }
 
@@ -437,7 +503,7 @@ body{
 #ui_sec .ui_wrap .ui_list .ui_box p{
   font-size: 1.6rem;
   color: #fff;
-} */
+}
 
 /* contact_sec */
 #contact_sec{
