@@ -1,8 +1,3 @@
-body{
-  scroll-behavior: smooth;
-  background-color: #000;
-}
-
 ::selection{
   background: #ff9257;
   color: #fff;
@@ -28,42 +23,6 @@ body{
 
 .heading:hover + .cursor {
   transform: scale(0.5);
-}
-
-/* header_sec */
-.header_sec{
-  width: 100%;
-  height: 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0 auto;
-  padding: 3rem 5rem 0;
-  font-family: "Cormorant Garamond", serif;
-  position: fixed;
-  top: 0;
-  color: #fff;
-  z-index: 99;
-}
-
-.header_sec .header_logo{
-  font-size: 1.2rem;
-  font-weight: 400;
-  font-family: "Cormorant Garamond", serif;
-}
-
-.header_sec .nav .util_menu{
-  font-size: 1.6rem;
-  display: flex;
-  gap: 5rem;
-  color: #fff;
-  font-weight: 300;
-  font-family: "IBM Plex Mono";
-  z-index: 2;
-}
-
-.header_sec .nav .util_menu li:hover{
-  color: #a50000;
 }
 
 /* main_sec */
@@ -96,69 +55,6 @@ body{
   transform: translate(-50%,-50%);
 }
 
-
-
-/* frame effect */
-/* #main_sec .tl, .tr, .bl, .br{
-  width: 5rem;
-  height: 5rem;
-  z-index: 10;
-}
-
-#main_sec .tl{
-  top: 7rem;
-  left: 5rem;
-  border-top: 2px solid #f0f0f0;
-  border-left: 2px solid #f0f0f0;
-  position: fixed;
-}
-
-#main_sec .tr{
-  top: 7rem;
-  right: 5rem;
-  border-top: 2px solid #f0f0f0;
-  border-right: 2px solid #f0f0f0;
-  position: fixed;
-}
-
-#main_sec .bl{
-  bottom: 7rem;
-  left: 5rem;
-  border-bottom: 2px solid #f0f0f0;
-  border-left: 2px solid #f0f0f0;
-  position: fixed;
-}
-
-#main_sec .br{
-  bottom: 7rem;
-  right: 5rem;
-  border-bottom: 2px solid #f0f0f0;
-  border-right: 2px solid #f0f0f0;
-  position: fixed;
-} */
-
-/* time */
-/* #main_sec .time{
-  bottom: 10%;
-  right: 0;
-  position: fixed;
-  font-size: 1.8rem;
-  font-weight: 400;
-}
-
-.time{
-  width: 100%;
-  padding: 0 5rem;
-  display: flex;
-  justify-content: center;
-  color: #fff;
-  z-index: 10;
-}
-
-.time h2{
-  font-size: 1.4rem;
-} */
-
 #main_sec video{
   width: 100%;
   height: 100%;
@@ -172,9 +68,10 @@ body{
   filter: brightness(60%);
 }
 
-#main_sec .main_text .text{
+#main_sec .main_text .intro{
   width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   flex-wrap: wrap;
   align-items: center;
@@ -183,6 +80,12 @@ body{
   font-weight: 600;
   gap: 3rem;
   color: #fff;
+}
+
+#main_sec .main_text .intro span:nth-child(2){
+  font-size: 2rem;
+  font-weight: 300;
+  text-align: center;
 }
 
 /* about_sec */
@@ -240,28 +143,15 @@ body{
 }
 
 /* project_sec */
-#project_sec{
-  overflow: hidden;
-}
-
-/* #project_sec .sec.project04 h2{
-  font-family: 'KakaoBigSans-ExtraBold';
-  margin-bottom: 1rem;
-  font-weight: 100;
-  font-size: 4.6rem;
-} */
-
 .sec{
   width: 100%;
-  height: 100vh;
-  position: relative;
-  z-index: 1;
+  height: 110vh;
 }
 
-/* #project_sec .sec:nth-child(1) { z-index: 1; }
+#project_sec .sec:nth-child(1) { z-index: 1; }
 #project_sec .sec:nth-child(2) { z-index: 2; }
 #project_sec .sec:nth-child(3) { z-index: 3; }
-#project_sec .sec:nth-child(4) { z-index: 4; } */
+#project_sec .sec:nth-child(4) { z-index: 4; }
   
 
 /* 각 섹션별 배경색 설정 */
@@ -295,7 +185,7 @@ body{
 }
 
 .project_box .project_title{
-  position: fixed;
+  position: absolute;
   top: 45%;
   left: 50%;
   text-align: center;
@@ -341,35 +231,39 @@ body{
 
 /* list_sec */
 #list_sec{
-  color: #fff;
   position: relative;
+  z-index: 5;
+  color: #fff;
   background: #000;
   padding: 20rem 0 10rem;
 }
 
 #list_sec .list_wrap{
+  width: 100%;
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-family: 'Pretendard Variable';
-  font-weight: 300;
 }
 
 #list_sec .list_title{
   width: 100%;
-  font-family: 'Pretendard Variable';
-  font-size: 6rem;
-  font-weight: 300;
   margin-bottom: 5rem;
   text-align: center;
+}
+
+#list_sec .list_title h2{
+  font-family: "Noto Sans", sans-serif;
+  font-size: 4.8rem;
+  text-transform: uppercase;
+  font-weight: 400;
 }
 
 #list_sec .list_wrap .list{
   width: 90%;
   border-top: 2px solid #333;
-  padding: 20rem 0;
+  padding: 13rem 0;
   transition: 0.2s;
   font-size: 3.2rem;
   font-weight: 400;
@@ -377,31 +271,32 @@ body{
 }
 
 #list_sec .list_wrap .list .inner{
-  width: 100%;
+  width: 80%;
   display: flex;
   justify-content: center;
   align-items: flex-start;
 }
 
 #list_sec .list_wrap .list .inner .num{
-  width: 30%;
+  width: 20%;
   font-size: 2rem;
-  padding-left: 20rem;
   padding-top: 1.1rem;
 }
 
 #list_sec .list_wrap .list .inner .tit{
-  width: 100%;
-  font-size: 6rem;
+  width: 80%;
+  font-size: 4.8rem;
+  letter-spacing: -0.2rem;
 }
 
 #list_sec .list_wrap .list .inner .con{
-  width: 100%;
+  width: 80%;
 }
 
 #list_sec .list_wrap .list .inner .con .text{
   font-size: 2rem;
   padding-bottom: 3rem;
+  letter-spacing: -0.1rem;
 }
 
 #list_sec .list_wrap .list .inner .con .tag{
@@ -411,8 +306,10 @@ body{
 }
 
 #list_sec .list_wrap .list:hover{
-  background-color: #111;
+  background: radial-gradient(circle,#111, #000);
   color: #fff;
+  padding: 14rem 3rem;
+  transition: 0.5s ease-in-out;
 }
 
 #list_sec .list_wrap .list:hover .tit{
@@ -434,89 +331,32 @@ body{
   text-align: left;
 }
 
-#list_sec .list_wrap .list .year{
-  font-size: 2.4rem;
-}
-
-#ui_sec{
-  padding: 0 2rem;
-}
-
-#ui_sec .ui_wrap{
-  width: 100%;
-  max-width: 180rem;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  position: relative;
-}
-
-#ui_sec .ui_wrap .ui_title{
-  position: sticky;
-  top: 0;
-  padding: 30rem 0 20rem 2rem;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-#ui_sec .ui_wrap .ui_title h2{
-  color: #fff;
-  font-size: 4.8rem;
-}
-
-#ui_sec .ui_wrap .ui_title p{
-  color: #fff;
-  font-size: 2.8rem;
-}
-
-#ui_sec .ui_wrap .ui_list{
-  width: 100%;
-  height: 100%;
-}
-
-#ui_sec .ui_wrap .ui_list .ui_box{
-  width: 100%;
-  height: 30rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 2rem;
-}
-
-#ui_sec .ui_wrap .ui_list .ui_box .ui_img{
-  width: 30rem;
-  height: 20rem;
-  border-radius: 1rem;
-  background-color: #111;
-  object-fit: cover;
-}
-
-#ui_sec .ui_wrap .ui_list .ui_box h3{
-  font-size: 2.8rem;
-  color: #fff;
-}
-
-#ui_sec .ui_wrap .ui_list .ui_box p{
-  font-size: 1.6rem;
-  color: #fff;
-}
-
 /* contact_sec */
 #contact_sec{
-  padding: 0 5rem;
+  width: 100%;
+  height: 100vh;
+  padding: 0 10rem;
+  position: relative;
 }
 
 #contact_sec .contact_wrap{
   width: 100%;
-  max-width: 120rem;
   height: 100vh;
   margin: 0 auto;
   position: relative;
-  background-color: #000;
+}
+
+#contact_sec video{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: block;
+  filter: brightness(10%);
 }
 
 #contact_sec .contact_title{
@@ -524,24 +364,19 @@ body{
   margin: 0 auto;
   text-align: left;
   position: absolute;
-  top: 45%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
 }
 
 #contact_sec .contact_title h2{
-  font-size: 2.4rem;
-  color: #a50000;
+  font-size: 16rem;
+  color: #fff;
   font-weight: 600;
   margin-bottom: 5rem;
   position: relative;
-}
-
-#contact_sec .contact_title p.email{
-  font-size: 4rem;
-  margin-bottom: 3rem;
-  color: #fff;
-  letter-spacing: -0.6rem;
+  text-transform: uppercase;
+  font-family: "Cormorant Garamond", serif;
 }
 
 #contact_sec .contact_title p{
@@ -552,27 +387,26 @@ body{
 #contact_sec .contact_title .contact_link{
   margin-top: 10rem;
   color: #fff;
-  font-size: 2.4rem;
+  font-size: 1.8rem;
+  text-transform: uppercase;
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  column-gap: 2rem;
+  column-gap: 5rem;
 }
 
-#contact_sec .contact_title .contact_link a{
-  display: inline-block;
+#contact_sec .contact_title .contact_link .contact_left,
+#contact_sec .contact_title .contact_link .contact_right{
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
-
-#contact_sec .contact_title .contact_link img{
-  width: 4rem;
-  height: 4rem;
-}
-
 
 @media (max-width: 1024px){
 
-  #main_sec .main_text .text{
+  #main_sec .main_text .intro{
     font-size: 8rem;
+    font-weight: 600;
   }
 
   /* about_sec */
@@ -584,25 +418,61 @@ body{
     font-size: 3.6rem;
   }
 
+  #list_sec .list_wrap .list .inner{
+    width: 100%;
+    flex-direction: column;
+    gap: 3rem;
+  }
+  
+  #list_sec .list_wrap .list .inner .num{
+  width: 100%;
+  font-size: 2rem;
+}
+
+  #list_sec .list_wrap .list .inner .tit{
+    width: 100%;
+    font-size: 4.8rem;
+  }
+
+  #list_sec .list_wrap .list .inner .con{
+    width: 100%;
+  }
+
+  #list_sec .list_wrap .list .inner .con .text{
+    font-size: 1.6rem;
+  }
+
+  #list_sec .list_wrap .list .inner .tag{
+    font-size: 1.4rem;
+  }
+
   /* contact_sec */
   #contact_sec .contact_title{
-    text-align: left;
+    top: 50%;
+    left: 50%;
+    text-align: center;
+  }
+
+  #contact_sec .contact_title h2{
+    font-size: 12rem;
+  }
+
+  #contact_sec .contact_title .contact_link{
+    justify-content: center;
   }
 }
 
 
 @media (max-width: 768px){
 
-  .header_sec{
-    justify-content: center;
+  /* main_sec */
+  #main_sec .main_text .intro{
+    font-size: 4.8rem;
+    font-weight: 600;
   }
 
-  .header_sec .nav{
-    display: none;
-  }
-
-  #list_sec .list_wrap .list .tag{
-    font-size: 2rem;
+  #main_sec .main_text .intro span:nth-child(2){
+    font-size: 1.6rem;
   }
 
   /* list_sec */
@@ -610,11 +480,33 @@ body{
     flex-direction: column;
     font-size: 2.6rem;
   }
+
+  #list_sec .list_wrap .list .tag{
+    font-size: 2rem;
+  }
+
+  #list_sec .list_wrap .list .inner .con .text{
+    font-size: 1.4rem;
+  }
+
+  #contact_sec .contact_title{
+    top: 50%;
+    left: 50%;
+    text-align: center;
+  }
+
+  #contact_sec .contact_title h2{
+    font-size: 6rem;
+  }
 }
 
 @media (max-width: 540px){
-  #main_sec .main_text .text{
-    font-size: 4.8rem;
+  #main_sec .main_text .intro{
+    font-size: 3.2rem;
+  }
+
+  #main_sec .main_text .intro span:nth-child(2){
+    font-size: 1.2rem;
   }
 
   #about_sec .about_title h3{
@@ -625,8 +517,20 @@ body{
     font-size: 6rem;
   }
 
+  
+  /* list_sec */
+  #list_sec .list_wrap .list{
+    flex-direction: column;
+    font-size: 2rem;
+  }
+
   #list_sec .list_wrap .list .tag{
+    font-size: 2rem;
     text-align: center;
+  }
+
+  #list_sec .list_wrap .list .inner .con .text{
+    font-size: 1.2rem;
   }
 
   #contact_sec .contact_title{

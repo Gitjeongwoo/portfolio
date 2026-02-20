@@ -5,7 +5,7 @@ $(document).ready(function(){
   //Scroll
   $.fn.scrollMoving = function(){
     let elementTop = $(this).offset().top;
-    let elementBottom = elementTop + (this).outerHeight();
+    let elementBottom = elementTop + $(this).outerHeight();
 
     let viewportTop = $(window).scrollTop();
     let viewportBottom = viewportTop + $(window).height();
@@ -13,15 +13,21 @@ $(document).ready(function(){
     return (viewportTop < elementBottom) && (elementTop < viewportBottom);
   };
 
-  $(window).on("load scroll",function(){
+  // rAF throttle: 스크롤 이벤트는 60fps보다 잦게 발생하므로
+  // 최대 1프레임당 1번만 layout read가 일어나도록 throttle
+  let ticking = false;
 
-    ani.each(function(){
-      if($(this).scrollMoving()){
-        $(this).addClass("moving");
-      }
-      // else{
-      //   $(this).removeClass("moving");
-      // }
+  $(window).on("load scroll", function(){
+    if (ticking) return;
+    ticking = true;
+
+    requestAnimationFrame(function(){
+      ani.each(function(){
+        if($(this).scrollMoving()){
+          $(this).addClass("moving");
+        }
+      });
+      ticking = false;
     });
   });
 

@@ -20,7 +20,7 @@ $(document).ready(function(){
 /* gsap 화면 겹치는 이벤트 */
 gsap.registerPlugin(ScrollTrigger);
 
-gsap.utils.toArray('.sec').forEach((el) => {
+gsap.utils.toArray('#project_sec .sec').forEach((el) => {
   ScrollTrigger.create({
     trigger: el,
     start: 'top top',
