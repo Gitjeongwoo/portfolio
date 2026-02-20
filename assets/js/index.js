@@ -1,6 +1,6 @@
 /* 커서 이벤트 */
 $(document).ready(function(){
-  var $cursor = $(".cursor");
+  const $cursor = $(".cursor");
   if (!$cursor.length) return;
 
   $(document).on("mousemove", function(e){
@@ -18,81 +18,49 @@ $(document).ready(function(){
 });
 
 /* gsap 화면 겹치는 이벤트 */
-
-$(function(){Splitting();});
-
 gsap.registerPlugin(ScrollTrigger);
 
-window.addEventListener("resize", () => {
-  ScrollTrigger.refresh();
-});
-
-var pinTriggers = [];
-
-gsap.utils.toArray('.sec').forEach((sec, i) => {
-  const video = sec.querySelector('.project_box video');
-  if (video && i > 0) {
-    gsap.set(video, {
-      y: 120,
-      scale: 0.8,
-      rotateX: 22,
-      z: -280,
-      opacity: 1,
-      force3D: true
-    });
-    gsap.to(video, {
-      y: 0,
-      scale: 1,
-      rotateX: 0,
-      z: 0,
-      opacity: 1,
-      ease: 'power2.out',
-      duration: 1,
-      scrollTrigger: {
-        trigger: sec,
-        start: 'top top',
-        end: '+=100%',
-        scrub: 0.5,
-        invalidateOnRefresh: true,
-      }
-    });
-  }
-
-  var st = ScrollTrigger.create({
-    trigger: sec,
+gsap.utils.toArray('.sec').forEach((el) => {
+  ScrollTrigger.create({
+    trigger: el,
     start: 'top top',
     pin: true,
-    pinSpacing: false,
-    scrub: true,
-    invalidateOnRefresh: true,
+    pinSpacing: false
   });
-  pinTriggers.push(st);
 });
 
 /* gsap 마우스포인트 이벤트 */
-gsap.registerPlugin(ScrollTrigger);
+let activeImage = null;
 
-let activeImage;
+let activeAlignFn = null;
 
 gsap.utils.toArray('.list').forEach((elem) => {
-  let image = elem.querySelector('img.fade');
+  const image = elem.querySelector('img.fade');
+  if (!image) return;
 
-  let align = e => {
-    gsap.set(image, {
-      x: e.clientX,
-      y: e.clientY
-    });
+  const xTo = gsap.quickTo(image, "x", { duration: 0.5, ease: "elastic.out(1, 0.3)" });
+  const yTo = gsap.quickTo(image, "y", { duration: 0.5, ease: "elastic.out(1, 0.3)" });
+
+  const align = e => {
+    xTo(e.clientX);
+    yTo(e.clientY);
   };
 
-  const startPoint = () => document.addEventListener('mousemove', align),
-        stopPoint = () => document.removeEventListener('mousemove', align);
+  const startTracking = () => document.addEventListener('mousemove', align);
+  const stopTracking = () => document.removeEventListener('mousemove', align);
 
-  let fade = gsap.to(image, {autoAlpha: 0.8, ease: 'none', paused: true});
+  const fade = gsap.to(image, { autoAlpha: 0.8, ease: 'none', paused: true });
 
   elem.addEventListener('mouseenter', (e) => {
+
+    if (activeAlignFn && activeAlignFn !== align) {
+      document.removeEventListener('mousemove', activeAlignFn);
+    }
+    activeAlignFn = align;
+
     fade.play();
 
-    if (activeImage) {
+    if (activeImage && activeImage !== image) {
       gsap.set(image, {
         x: gsap.getProperty(activeImage, "x"),
         y: gsap.getProperty(activeImage, "y")
@@ -100,20 +68,16 @@ gsap.utils.toArray('.list').forEach((elem) => {
     }
 
     activeImage = image;
-    gsap.quickTo(image, "x", {duration: 0.5, ease: "elastic"});
-    gsap.quickTo(image, "y", {duration: 0.5, ease: "elastic"});
-
     align(e);
-    startPoint();
+    startTracking();
   });
 
   elem.addEventListener('mouseleave', () => {
     fade.reverse();
-    stopPoint();
+    stopTracking();
+
+    if (activeAlignFn === align) {
+      activeAlignFn = null;
+    }
   });
 });
-
-/* $(document).on('click', 'a[href="#"]', function(e){
-  e.preventDefault();
-}); */
-
