@@ -17,6 +17,8 @@ html,body{
   height: 100%;
   min-height: 100%;
   word-break: keep-all;
+  background: #000;
+  color: #fff;
 }
 
 html{

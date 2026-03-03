@@ -15,9 +15,51 @@ $(document).ready(function(){
   }).on("mouseleave", "a, button, .list, [href]", function(){
     $cursor.removeClass("is-hover");
   });
+
+
+  /* skill icon hover */
+$(".skills_wrap img:nth-child(1)")
+  .on("mouseenter", function(){ $(this).attr("src", "assets/images/ui/html2.svg"); })
+  .on("mouseleave", function(){ $(this).attr("src", "assets/images/ui/html.svg"); });
+
+$(".skills_wrap img:nth-child(2)")
+  .on("mouseenter", function(){ $(this).attr("src", "assets/images/ui/css2.svg"); })
+  .on("mouseleave", function(){ $(this).attr("src", "assets/images/ui/css.svg"); });
+  
+$(".skills_wrap img:nth-child(3)")
+.on("mouseenter", function(){ $(this).attr("src", "assets/images/ui/jquery2.svg"); })
+.on("mouseleave", function(){ $(this).attr("src", "assets/images/ui/jquery.svg"); }); 
+
+  $(".skills_wrap img:nth-child(4)")
+  .on("mouseenter", function(){ $(this).attr("src", "assets/images/ui/javascript2.svg"); })
+  .on("mouseleave", function(){ $(this).attr("src", "assets/images/ui/javascript.svg"); });
+
+  $(".skills_wrap img:nth-child(6)")
+  .on("mouseenter", function(){ $(this).attr("src", "assets/images/ui/figma2.svg"); })
+  .on("mouseleave", function(){ $(this).attr("src", "assets/images/ui/figma.svg"); });
+
+  $(".skills_wrap img:nth-child(7)")
+  .on("mouseenter", function(){ $(this).attr("src", "assets/images/ui/photoshop2.svg"); })
+  .on("mouseleave", function(){ $(this).attr("src", "assets/images/ui/photoshop.svg"); });
 });
 
-/* gsap 화면 겹치는 이벤트 */
+/* about */
+/* let list = gsap.utils.toArray('#about_sec ul li');
+let scrollTween = gsap.to(list,{
+  xPercent: -100 * (list.length - 1),
+  ease:'none',
+  scrollTrigger: {
+    trigger: '#about_sec',
+    start: 'center center',
+    end: '300%', 
+    pin: true,
+    scrub: 1,
+  }
+}); */
+
+
+
+/* gsap */
 gsap.registerPlugin(ScrollTrigger);
 
 gsap.utils.toArray('#project_sec .sec').forEach((el) => {
@@ -29,55 +71,24 @@ gsap.utils.toArray('#project_sec .sec').forEach((el) => {
   });
 });
 
-/* gsap 마우스포인트 이벤트 */
-let activeImage = null;
-
-let activeAlignFn = null;
-
-gsap.utils.toArray('.list').forEach((elem) => {
-  const image = elem.querySelector('img.fade');
-  if (!image) return;
-
-  const xTo = gsap.quickTo(image, "x", { duration: 0.5, ease: "elastic.out(1, 0.3)" });
-  const yTo = gsap.quickTo(image, "y", { duration: 0.5, ease: "elastic.out(1, 0.3)" });
-
-  const align = e => {
-    xTo(e.clientX);
-    yTo(e.clientY);
-  };
-
-  const startTracking = () => document.addEventListener('mousemove', align);
-  const stopTracking = () => document.removeEventListener('mousemove', align);
-
-  const fade = gsap.to(image, { autoAlpha: 0.8, ease: 'none', paused: true });
-
-  elem.addEventListener('mouseenter', (e) => {
-
-    if (activeAlignFn && activeAlignFn !== align) {
-      document.removeEventListener('mousemove', activeAlignFn);
-    }
-    activeAlignFn = align;
-
-    fade.play();
-
-    if (activeImage && activeImage !== image) {
-      gsap.set(image, {
-        x: gsap.getProperty(activeImage, "x"),
-        y: gsap.getProperty(activeImage, "y")
-      });
-    }
-
-    activeImage = image;
-    align(e);
-    startTracking();
-  });
-
-  elem.addEventListener('mouseleave', () => {
-    fade.reverse();
-    stopTracking();
-
-    if (activeAlignFn === align) {
-      activeAlignFn = null;
-    }
-  });
+/* swiper */
+var swiper = new Swiper(".mySwiper", {
+  slidesPerView: 3,
+  spaceBetween: 30,
+  loop: true,
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+  },
+  breakpoints: {
+    280: {
+      slidesPerView: 1,
+    },
+    768: {
+      slidesPerView: 2,
+    },
+    1024: {
+      slidesPerView: 3,
+    },
+  },
 });
