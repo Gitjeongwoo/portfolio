@@ -31,22 +31,6 @@
   z-index: 2;
 }
 
-/* mob_menu */
-.mob_menu{
-  width: 10px;
-  justify-content: flex-end;
-}
-
-.mob_menu span{
-  position: absolute;
-  right: 0;
-  width: 100%;
-  height: 1px;
-  color: #fff;
-  border: 1px solid #ff0000;
-}
-
-
 @media (max-width: 768px){
 
   .header_sec{

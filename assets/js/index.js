@@ -1,4 +1,4 @@
-/* 커서 이벤트 */
+/* cursor */
 $(document).ready(function(){
   const $cursor = $(".cursor");
   if (!$cursor.length) return;
