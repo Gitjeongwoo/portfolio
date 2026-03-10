@@ -4,6 +4,7 @@ $(document).ready(function () {
   if (!$cursor.length) return;
 
   $(document).on("mousemove", function (e) {
+    if ($(window).width() <= 540) return;
     $cursor.css({
       top:  (e.clientY - 15) + "px",
       left: (e.clientX - 30) + "px"
@@ -11,6 +12,7 @@ $(document).ready(function () {
   });
 
   $(document).on("mouseenter", "a, button, .list, [href]", function () {
+    if ($(window).width() <= 540) return;
     $cursor.addClass("is-hover");
   }).on("mouseleave", "a, button, .list, [href]", function () {
     $cursor.removeClass("is-hover");
@@ -137,6 +139,7 @@ $(document).ready(function(){
     $(".modal-content li").eq(pageNum).stop().fadeIn(); //클릭한 해당목록의 내용
     $(".modal").stop().fadeIn(); //검정배경
     $(".modal").scrollTop(0); //새로 창을 열때는 항상 맨위로 이동하여 보이게 함
+    $("body").addClass("modal-open"); //배경 스크롤 막기
   });
 
   //이전다음버튼
@@ -165,6 +168,7 @@ $(document).ready(function(){
   $(".close").click(function(){
     $(".modal").stop().fadeOut();
 		$(".modal-content li").stop().fadeOut();
+    $("body").removeClass("modal-open"); //배경 스크롤 복원
   });
 
 });

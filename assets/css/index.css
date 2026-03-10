@@ -504,6 +504,7 @@
 --swiper-pagination-color: #fff;
 }
 
+body.modal-open{overflow:hidden;}
 .modal{
 	display:none;
 	position:fixed;
