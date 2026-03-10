@@ -35,44 +35,48 @@ $(document).ready(function () {
 /* project_sec */
 gsap.registerPlugin(ScrollTrigger);
 
-const sections = gsap.utils.toArray('#project_sec .sec');
+const mm = gsap.matchMedia();
 
-// 패널 고정
-sections.forEach((el, i) => {
-  ScrollTrigger.create({
-    trigger: el,
-    start: 'top top',
-    end: 'bottom top',
-    pin: true,
-    pinSpacing: false
-  });
+mm.add("(min-width: 769px)", () => {
+  const sections = gsap.utils.toArray('#project_sec .sec');
 
-  // 진입: 아래에서 슬라이드업
-  gsap.from(el, {
-    scale: 0.7,
-    yPercent: 6,
-    ease: 'none',
-    scrollTrigger: {
+  // 패널 고정
+  sections.forEach((el, i) => {
+    ScrollTrigger.create({
       trigger: el,
-      start: 'top bottom',
-      end: 'top top',
-      scrub: true
-    }
-  });
+      start: 'top top',
+      end: 'bottom top',
+      pin: true,
+      pinSpacing: false
+    });
 
-  // 이탈: 뒤로 물러나며 축소 (마지막 패널 제외)
-  if (i < sections.length - 1) {
-    gsap.to(el, {
-      scale: 1,
+    // 진입: 아래에서 슬라이드업
+    gsap.from(el, {
+      scale: 0.7,
+      yPercent: 6,
       ease: 'none',
       scrollTrigger: {
         trigger: el,
-        start: 'top top',
-        end: 'bottom top',
+        start: 'top bottom',
+        end: 'top top',
         scrub: true
       }
     });
-  }
+
+    // 이탈: 뒤로 물러나며 축소 (마지막 패널 제외)
+    if (i < sections.length - 1) {
+      gsap.to(el, {
+        scale: 1,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top top',
+          end: 'bottom top',
+          scrub: true
+        }
+      });
+    }
+  });
 });
 
 /* swiper */

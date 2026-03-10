@@ -462,7 +462,7 @@
   position: relative;
 }
 
-#design_sec .swiper-slide p{
+#design_sec .swiper-slide .design_text{
   position: absolute;
   top: 50%;
   left: 50%;
@@ -470,10 +470,17 @@
   display: block;
   opacity: 0;
   transition: 0.3s;
+}
+
+#design_sec .swiper-slide .design_text h2{
   font-size: 2rem;
 }
 
-#design_sec .swiper-slide a:hover p{
+#design_sec .swiper-slide .design_text p{
+  font-size: 1.6rem;
+}
+
+#design_sec .swiper-slide a:hover .design_text{
   opacity: 1;
   color: #fff;
 }
