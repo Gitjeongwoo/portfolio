@@ -9,26 +9,23 @@
   padding: 3rem 5rem 0;
   font-family: "Cormorant Garamond", serif;
   position: fixed;
-  top: 0;
+  top: 3rem;
   color: #fff;
   z-index: 99;
 }
 
-.header_sec .header_logo{
-  font-size: 1.2rem;
-  font-weight: 400;
-  font-family: "Cormorant Garamond", serif;
-}
-
 .header_sec .nav .util_menu{
-  font-size: 1.6rem;
-  display: flex;
+  font-size: 1.8rem;
   gap: 5rem;
   color: #fff;
   font-weight: 300;
   text-transform: uppercase;
   font-family: "Noto Sans", sans-serif;
   z-index: 2;
+}
+
+.header_sec .nav .util_menu li:first-child{
+  color: #e76c2a;
 }
 
 @media (max-width: 768px){

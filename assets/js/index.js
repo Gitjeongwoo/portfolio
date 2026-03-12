@@ -55,7 +55,7 @@ mob.add("(min-width: 540px)", () => {
     // 진입: 아래에서 슬라이드업
     gsap.from(el, {
       scale: 0.7,
-      yPercent: 6,
+      yPercent: 1,
       ease: 'none',
       scrollTrigger: {
         trigger: el,
